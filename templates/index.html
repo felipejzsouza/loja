@@ -1,17 +1,6 @@
 {{define "Index"}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>Loja Fê</title>
-</head>
-<nav class="navbar navbar-light bg-light mb-4">
-    <a class="navbar-brand" href="/">Loja Fê</a>
-</nav>
+{{template "_head"}}
+{{template "_menu"}}
 <body>
     <div class="container">
         <section class="card">
@@ -32,6 +21,8 @@
                             <td>{{.Descricao}}</td>
                             <td>{{.Preco}}</td>
                             <td>{{.Quantidade}}</td>
+                            <td><a href="/edit?id={{.Id}}" class="btn btn-info">Atualizar</a></td>
+                            <td><button onclick="onDelete('{{.Id}}');" class="btn btn-danger">Deletar</button></td>
                         </tr>
                         {{end}}       
                     </tbody>
@@ -43,5 +34,15 @@
         </div>
     </div>    
 </body>
+
+<script>
+function onDelete(id) {
+    let resposta = confirm("Deseja deletar esse produto?")
+    if (resposta) {
+        window.location = "/delete?id=" + id
+    }
+}
+</script>
+
 </html>
 {{end}}
