@@ -56,7 +56,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		id := r.URL.Query().Get("id")
+		id := r.FormValue("id")
 		nome := r.FormValue("nome")
 		descricao := r.FormValue("descricao")
 		preco := r.FormValue("preco")
